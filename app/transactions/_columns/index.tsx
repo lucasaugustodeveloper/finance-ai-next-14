@@ -1,11 +1,14 @@
 "use client";
 
 import { Button } from "@/app/_components/ui/button";
+import {
+  TRANSACTION_CATEGORY_OPTIONS_LABEL,
+  TRANSACTION_PAYMENT_METHOD_LABELS,
+} from "@/app/_constants/transactions";
 import { Transaction } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { PencilIcon, TrashIcon } from "lucide-react";
 import { TransactionTypeBadge } from "../_components/type-badge";
-import { transactionCategoryMap, transactionPaymentMethodMap } from "./types";
 
 export const TransactionColumns: ColumnDef<Transaction>[] = [
   {
@@ -23,13 +26,13 @@ export const TransactionColumns: ColumnDef<Transaction>[] = [
     accessorKey: "category",
     header: "Categoria",
     cell: ({ row: { original: transaction } }) =>
-      transactionCategoryMap[transaction.category],
+      TRANSACTION_CATEGORY_OPTIONS_LABEL[transaction.category],
   },
   {
     accessorKey: "paymentMethod",
     header: "Método de Pagamento",
     cell: ({ row: { original: transaction } }) =>
-      transactionPaymentMethodMap[transaction.paymentMethod],
+      TRANSACTION_PAYMENT_METHOD_LABELS[transaction.paymentMethod],
   },
   {
     accessorKey: "createdAt",
