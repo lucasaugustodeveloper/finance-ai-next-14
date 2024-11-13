@@ -4,6 +4,7 @@ import { isMatch } from "date-fns";
 import { redirect } from "next/navigation";
 import { getDashboard } from "../_data/get-dashboard";
 import ExpensesPerCategory from "./_components/expenses-per-category";
+import LastTransactions from "./_components/last-transactions";
 import SummaryCards from "./_components/summary-cards";
 import TimeSelect from "./_components/times-selects";
 import TransactionPieChart from "./_components/transactionPieChart";
@@ -48,7 +49,7 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
           </div>
         </div>
 
-        <div>aside</div>
+        <LastTransactions lastTransactions={dashboard.lastTransactions} />
       </div>
     </div>
   );
