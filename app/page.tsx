@@ -6,7 +6,7 @@ export default async function Home() {
   const { userId } = await auth();
 
   if (!userId) {
-    redirect("/login");
+    return redirect("/login");
   }
 
   return (

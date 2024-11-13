@@ -3,6 +3,7 @@ import { dark } from "@clerk/themes";
 import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
 
+import NavBar from "./_components/navbar";
 import "./globals.css";
 
 const mulish = Mulish({
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${mulish.className} dark antialiased`}>
         <ClerkProvider appearance={{ baseTheme: dark }}>
+          <NavBar />
           {children}
         </ClerkProvider>
       </body>
