@@ -2,8 +2,10 @@
 // import { redirect } from "next/navigation";
 import { isMatch } from "date-fns";
 import { redirect } from "next/navigation";
+import { getDashboard } from "../_data/get-dashboard";
 import SummaryCards from "./_components/summary-cards";
 import TimeSelect from "./_components/times-selects";
+import TransactionPieChart from "./_components/transactionPieChart";
 
 interface HomeProps {
   searchParams: { month: string };
@@ -24,6 +26,8 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
     return redirect("?month=01");
   }
 
+  const dashboard = await getDashboard(month);
+
   return (
     <div className="space-y-6 p-6">
       <div className="flex justify-between">
@@ -31,7 +35,17 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
         <TimeSelect />
       </div>
 
-      <SummaryCards month={month} />
+      <div className="grid grid-cols-[2fr,1fr] gap-4">
+        <div className="flex flex-col gap-6 overflow-hidden">
+          <SummaryCards month={month} {...dashboard} />
+
+          <div className="grid h-full grid-cols-3 grid-rows-1 gap-6 overflow-hidden">
+            <TransactionPieChart {...dashboard} />
+          </div>
+        </div>
+
+        <div>aside</div>
+      </div>
     </div>
   );
 };
