@@ -5,7 +5,7 @@ const SubscriptionPage = async () => {
   const { userId } = await auth();
 
   if (!userId) {
-    return redirect("/login");
+    redirect("/login");
   }
 
   return <h1>Subscription page</h1>;

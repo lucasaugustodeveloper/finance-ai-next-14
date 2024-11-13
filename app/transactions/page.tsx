@@ -9,7 +9,7 @@ const TransactionsPage = async () => {
   const { userId } = await auth();
 
   if (!userId) {
-    return redirect("/login");
+    redirect("/login");
   }
 
   const transaction = await db.transaction.findMany({
