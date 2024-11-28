@@ -1,5 +1,4 @@
-// import { auth } from "@clerk/nextjs/server";
-// import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
 import { isMatch } from "date-fns";
 import { redirect } from "next/navigation";
 import { getDashboard } from "../_data/get-dashboard";
@@ -14,18 +13,16 @@ interface HomeProps {
 }
 
 const Home = async ({ searchParams: { month } }: HomeProps) => {
-  // const { userId } = await auth();
+  const { userId } = await auth();
 
-  // if (!userId) {
-  //   redirect("/login");
-  // }
+  if (!userId) {
+    redirect("/login");
+  }
 
   const monthIsInvalid = !month || !isMatch(month, "MM");
 
-  console.log("month:", month);
-
   if (monthIsInvalid) {
-    return redirect("?month=01");
+    return redirect(`?month=${new Date().getMonth() + 1}`);
   }
 
   const dashboard = await getDashboard(month);
