@@ -48,15 +48,18 @@ export const getDashboard = async (month: string) => {
   );
 
   const typesPercentage: TransactionPercentageTypes = {
-    [TransactionType.DEPOSIT]: Math.round(
-      (Number(depositTotal || 0) / Number(transactionsTotal)) * 100,
-    ),
-    [TransactionType.INVESTMENT]: Math.round(
-      (Number(investmentsTotal || 0) / Number(transactionsTotal)) * 100,
-    ),
-    [TransactionType.EXNPENSE]: Math.round(
-      (Number(expensesTotal || 0) / Number(transactionsTotal)) * 100,
-    ),
+    [TransactionType.DEPOSIT]:
+      Math.round(
+        (Number(depositTotal || 0) / Number(transactionsTotal)) * 100,
+      ) || 0,
+    [TransactionType.INVESTMENT]:
+      Math.round(
+        (Number(investmentsTotal || 0) / Number(transactionsTotal)) * 100,
+      ) || 0,
+    [TransactionType.EXNPENSE]:
+      Math.round(
+        (Number(expensesTotal || 0) / Number(transactionsTotal)) * 100,
+      ) || 0,
   };
 
   const totalExpensePerCategory: TotalExpensePerCategory[] = (
