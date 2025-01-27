@@ -12,7 +12,7 @@ import { Button } from "./ui/button";
 import UpsertTransactionDialog from "./upsert-transaction-dialog";
 
 interface AddTransactionButtonProps {
-  userCanAddTransaction: boolean;
+  userCanAddTransaction: boolean | undefined;
 }
 
 const AddTransactionButton = ({
